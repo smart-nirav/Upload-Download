@@ -1,0 +1,148 @@
+.uploadBtn {
+    position: relative;
+    padding: 5px 20px;
+
+    input {
+        opacity: 0;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.container {
+    position: fixed;
+    bottom: 0;
+    right: 10px;
+    width: 425px;
+
+    .accordion {
+        border: 1px solid #e7e7e7;
+        border-bottom: none;
+        border-radius: 10px;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+
+        .accordionHeader {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            border-bottom: 1px solid #e7e7e7;
+
+            .headerLeft {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+
+                h2 {
+                    font-size: 20px;
+                    line-height: 28px;
+                    margin: 0;
+                    font-weight: 600;
+                }
+
+                span {
+                    font-size: 16px;
+                    line-height: 24px;
+                    font-weight: 600;
+                }
+            }
+
+            .headerRight {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+
+                button {
+                    border: none;
+                    outline: none;
+                    background-color: transparent;
+                    cursor: pointer;
+                    line-height: 0;
+                    padding: 0;
+
+                    &.downArrowContainer {
+                        img {
+                            transform: rotate(180deg);
+
+                            &.iconRotate {
+                                transform: rotate(0deg);
+                            }
+                        }
+                    }
+
+                    img {
+                        height: 24px;
+                        width: 24px;
+
+
+                    }
+                }
+            }
+        }
+
+        .bodyContainer {
+
+            ul {
+                height: 0;
+                padding: 0;
+                margin: 0;
+                transition: all .3s;
+
+                &::-webkit-scrollbar {
+                    display: none;
+                }
+
+                &.maxHeight {
+                    height: 320px;
+                    margin: 10px 0 0;
+                    overflow-y: auto;
+                }
+
+                li {
+                    list-style-type: none;
+                    padding: 5px 10px;
+
+                    .fileDetails {
+                        display: flex;
+                        align-items: center;
+                        gap: 5px;
+
+                        .fileIcon {
+                            width: 48px;
+
+                            img {
+                                width: 100%;
+                                height: auto;
+                            }
+                        }
+
+                        .fileDescription {
+                            width: calc(100% - 74px);
+
+                            h4 {
+                                font-size: 16px;
+                                line-height: 24px;
+                                font-weight: normal;
+                                margin: 0;
+                                width: 100%;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                white-space: nowrap;
+                            }
+                        }
+
+                        .statusImg {
+                            height: 24px;
+                            width: 24px;
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+}
