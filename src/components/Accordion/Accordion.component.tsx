@@ -1,14 +1,10 @@
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import { AccordionTypes } from './Accordion.type';
+import { handleFileSizeType, handleFileStatus, handleFiletype } from '../../utils/helper/common.helper';
+import { ActionType } from '../../utils/constants/common.constant';
 import DownArrow from '../../assets/images/downArrow.svg'
 import CloseIcon from '../../assets/images/close.svg'
-import { FileType, IMG_LOCAL_PATH } from '../../utils/constants/common.constant';
-import FileIcon from '../../assets/images/file_types/others_type.svg';
-import LoaderIcon from '../../assets/images/loader.svg';
-import StatusFailedIcon from '../../assets/images/failed.svg';
-import StatusSuccessIcon from '../../assets/images/success.svg';
 import AccordionStyles from './Accordion.module.scss';
-import { FILE_TYPES } from './FileTypes';
 
 const AccordionComp = ({ label }: AccordionTypes) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -32,49 +28,6 @@ const AccordionComp = ({ label }: AccordionTypes) => {
         setData(result)
     }
 
-    //Return File icon based on file type
-    const handleFiletype = useCallback((type: string) => {
-        console.log(type)
-        //Check type in given array object of file types
-        const fileType = FILE_TYPES.find((typeF) => typeF.fileType === type)
-
-
-        if (fileType === undefined) {
-            //return default icon if type not found in file types array
-            return FileIcon
-        } else {
-            //return icon from file types array
-            return IMG_LOCAL_PATH + fileType.icon
-        }
-
-
-    }, [])
-
-    //Calculate file size
-    const handleFileSizeType = useCallback((size: number) => {
-        if (size === 0) {
-            return '0 bytes'
-        }
-
-        let fixSize = 1000;
-        let allSize = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-
-        let sizeCount = Math.floor(Math.log(size) / Math.log(fixSize))
-
-        return parseFloat((size / Math.pow(fixSize, sizeCount)).toFixed()) + ' ' + allSize[sizeCount]
-    }, [])
-
-    //Handle file status
-    const handleFileStatus = (status: string) => {
-        if (status === 'loading') {
-            return LoaderIcon
-        } else if (status === 'success') {
-            return StatusSuccessIcon
-        } else {
-            return StatusFailedIcon
-        }
-    }
-
     return (
         (
             <div>
@@ -87,7 +40,7 @@ const AccordionComp = ({ label }: AccordionTypes) => {
                         <div className={AccordionStyles.accordion}>
                             <div className={AccordionStyles.accordionHeader}>
                                 <div className={AccordionStyles.headerLeft}>
-                                    <h2>{FileType[1]}</h2>
+                                    <h2>{ActionType[1]}</h2>
                                     <span>(4/{data ? data.length : 0})</span>
                                 </div>
 
@@ -110,7 +63,6 @@ const AccordionComp = ({ label }: AccordionTypes) => {
                                                 <div className={AccordionStyles.fileDetails}>
                                                     <div className={AccordionStyles.fileIcon}>
                                                         <img src={handleFiletype(file.type)} alt="" />
-                                                        {/* <span>{handleFiletype(file.type)}</span> */}
                                                     </div>
                                                     <div className={AccordionStyles.fileDescription}>
                                                         <h4>{file.name}</h4>

@@ -1,4 +1,4 @@
-export const FileType = {
+export const ActionType = {
   1: "Upload",
   2: "Download",
 };
