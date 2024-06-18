@@ -1,3 +1,5 @@
+@import '../../styles/abstracts/abstracts';
+
 .uploadBtn {
     position: relative;
     padding: 5px 20px;
@@ -19,7 +21,7 @@
     width: 425px;
 
     .accordion {
-        border: 1px solid #e7e7e7;
+        border: 1px solid $mercury;
         border-bottom: none;
         border-radius: 10px;
         border-bottom-left-radius: 0;
@@ -30,7 +32,7 @@
             align-items: center;
             justify-content: space-between;
             padding: 15px;
-            border-bottom: 1px solid #e7e7e7;
+            border-bottom: 1px solid $mercury;
 
             .headerLeft {
                 display: flex;
@@ -108,7 +110,7 @@
 
                     .fileDetails {
                         display: flex;
-                        align-items: center;
+                        align-items: flex-start;
                         gap: 5px;
 
                         .fileIcon {
