@@ -2,9 +2,6 @@
 import { FILE_TYPES } from "../constants/fileType.constant";
 import { IMG_LOCAL_PATH } from "../constants/common.constant";
 import FileIcon from "../../assets/images/file_types/others_type.svg";
-import LoaderIcon from '../../assets/images/loader.svg';
-import StatusFailedIcon from '../../assets/images/failed.svg';
-import StatusSuccessIcon from '../../assets/images/success.svg';
 
 export const handleFiletype = (type: string) => {
     //Check type in given array object of file types
@@ -32,15 +29,4 @@ export const handleFileSizeType = (size: number) => {
     let sizeCount = Math.floor(Math.log(size) / Math.log(fixSize))
 
     return parseFloat((size / Math.pow(fixSize, sizeCount)).toFixed()) + ' ' + allSize[sizeCount]
-}
-
-//Handle file status
-export const handleFileStatus = (status: string) => {
-    if (status === 'loading') {
-        return LoaderIcon
-    } else if (status === 'success') {
-        return StatusSuccessIcon
-    } else {
-        return StatusFailedIcon
-    }
 }
