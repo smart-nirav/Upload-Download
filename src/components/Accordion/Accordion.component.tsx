@@ -1,19 +1,19 @@
 import { useState } from 'react';
-import { AccordionTypes } from './Accordion.type';
-import { handleFileSizeType, handleFiletype } from '../../utils/helper/common.helper';
-import { ActionType } from '../../utils/constants/common.constant';
-import DownArrow from '../../assets/images/downArrow.svg'
-import CloseIcon from '../../assets/images/close.svg'
-import AccordionStyles from './Accordion.module.scss';
+import CloseIcon from '../../assets/images/close.svg';
+import DownArrow from '../../assets/images/downArrow.svg';
 import LoaderIcon from '../../assets/images/loader.svg';
 import StatusFailedIcon from '../../assets/images/re-upload.svg';
 import StatusSuccessIcon from '../../assets/images/success.svg';
+import { useBackgroundTask } from '../../context/BackgroundTask.context';
+import { ActionType } from '../../utils/constants/common.constant';
+import { handleFileSizeType, handleFiletype } from '../../utils/helper/common.helper';
+import AccordionStyles from './Accordion.module.scss';
 
-const AccordionComp = ({ label }: AccordionTypes) => {
+const AccordionComp = () => {
+    const { uploadTasks } = useBackgroundTask();
+
     const [isOpen, setIsOpen] = useState(false);
-    const [data, setData] = useState<FileList | null>(null);
 
-    let status = 'failed';
 
     //Open and close accordion
     const handleAccordion = () => {
@@ -22,13 +22,7 @@ const AccordionComp = ({ label }: AccordionTypes) => {
 
     //Handle close button of accordion
     const handleClose = () => {
-        console.log('close')
-    }
-
-    //Handle File upload
-    const handleUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const result = e.target.files;
-        setData(result);
+        setIsOpen(false)
     }
 
     //Handle file status icon & reupload
@@ -48,17 +42,13 @@ const AccordionComp = ({ label }: AccordionTypes) => {
     return (
         (
             <div>
-                <button className={AccordionStyles.uploadBtn}>
-                    {label ? label : 'Button'}
-                    <input multiple type="file" id="upload_file" onChange={(e) => handleUpload(e)} />
-                </button>
-                {data ?
+                {uploadTasks ?
                     <div className={AccordionStyles.container}>
                         <div className={AccordionStyles.accordion}>
                             <div className={AccordionStyles.accordionHeader}>
                                 <div className={AccordionStyles.headerLeft}>
                                     <h2>{ActionType[1]}</h2>
-                                    <span>(4/{data ? data.length : 0})</span>
+                                    <span>(4/{uploadTasks ? uploadTasks.length : 0})</span>
                                 </div>
 
                                 <div className={AccordionStyles.headerRight}>
@@ -74,16 +64,16 @@ const AccordionComp = ({ label }: AccordionTypes) => {
 
                             <div className={AccordionStyles.bodyContainer}>
                                 <ul className={`${isOpen ? AccordionStyles.maxHeight : ''}`}>
-                                    {data && [...data].map((file, index) => {
+                                    {uploadTasks && [...uploadTasks].map((task, index) => {
                                         return (
                                             <li key={index}>
                                                 <div className={AccordionStyles.fileDetails}>
                                                     <div className={AccordionStyles.fileIcon}>
-                                                        <img src={handleFiletype(file.type)} alt="" />
+                                                        <img src={handleFiletype(task.file.type)} alt="" />
                                                     </div>
                                                     <div className={AccordionStyles.fileDescription}>
-                                                        <h4>{file.name}</h4>
-                                                        <span>{handleFileSizeType(file.size)}</span>
+                                                        <h4>{task.file.name}</h4>
+                                                        <span>{handleFileSizeType(task.file.size)}</span>
                                                     </div>
                                                     {handleFileStatus(status)}
                                                 </div>

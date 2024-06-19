@@ -1,3 +1,5 @@
 import AccordionComp from "./Accordion";
+import DownloadComp from "./Download";
+import UploadComp from "./Upload";
 
-export { AccordionComp };
+export { AccordionComp, DownloadComp, UploadComp };
