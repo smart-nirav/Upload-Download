@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import { AccordionTypes } from './Accordion.type';
-import { handleFileSizeType, handleFileStatus, handleFiletype } from '../../utils/helper/common.helper';
+import { handleFileSizeType, handleFiletype } from '../../utils/helper/common.helper';
 import { ActionType } from '../../utils/constants/common.constant';
 import DownArrow from '../../assets/images/downArrow.svg'
 import CloseIcon from '../../assets/images/close.svg'
 import AccordionStyles from './Accordion.module.scss';
+import LoaderIcon from '../../assets/images/loader.svg';
+import StatusFailedIcon from '../../assets/images/re-upload.svg';
+import StatusSuccessIcon from '../../assets/images/success.svg';
 
 const AccordionComp = ({ label }: AccordionTypes) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -25,7 +28,21 @@ const AccordionComp = ({ label }: AccordionTypes) => {
     //Handle File upload
     const handleUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
         const result = e.target.files;
-        setData(result)
+        setData(result);
+    }
+
+    //Handle file status icon & reupload
+    const handleFileStatus = (status: string) => {
+        switch (status) {
+            case 'loading':
+                return <img src={LoaderIcon} />;
+            case 'success':
+                return <img src={StatusSuccessIcon} alt="" />
+            case 'failed':
+                return <button className={AccordionStyles.btnFailed}><img src={StatusFailedIcon} alt="" /></button>
+            default:
+                break;
+        }
     }
 
     return (
@@ -68,7 +85,7 @@ const AccordionComp = ({ label }: AccordionTypes) => {
                                                         <h4>{file.name}</h4>
                                                         <span>{handleFileSizeType(file.size)}</span>
                                                     </div>
-                                                    <img src={handleFileStatus(status)} alt="" className={AccordionStyles.statusImg} />
+                                                    {handleFileStatus(status)}
                                                 </div>
                                             </li>
                                         )
