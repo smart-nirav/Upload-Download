@@ -1,6 +1,6 @@
 import React from 'react'
 import { useBackgroundTask } from '../../context/BackgroundTask.context';
-import { BackgroundUploadComp } from '../../components';
+import { BackgrounDownloadComp, BackgroundUploadComp } from '../../components';
 
 const UploadComp1 = () => {
 
@@ -16,7 +16,7 @@ const UploadComp1 = () => {
 
     return (
         <>
-            <button className=''>
+            <button className='btn'>
                 Upload-1
                 <input multiple type="file" id="upload_file" onChange={(e) => handleUpload(e)} />
             </button>

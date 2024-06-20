@@ -1,6 +1,14 @@
+import { useBackgroundTask } from "../../context/BackgroundTask.context";
+import AccordionComp from "../Accordion";
+
 const BackgrounDownloadComp = () => {
+    const { uploadTasks } = useBackgroundTask();
+
     return (
-        <div>BackgrounDownloadComp</div>
+        <>
+            <p>Download</p>
+            <AccordionComp tasks={uploadTasks} />
+        </>
     )
 }
 

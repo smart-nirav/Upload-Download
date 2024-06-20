@@ -10,11 +10,10 @@ import { handleFileSizeType, handleFiletype } from '../../utils/helper/common.he
 import AccordionStyles from './Accordion.module.scss';
 
 type AccordionType = {
-    taskList: UploadTask;
+    tasks: UploadTask[]
 }
 
-const AccordionComp = () => {
-    const { uploadTasks } = useBackgroundTask();
+const AccordionComp = ({ tasks }: AccordionType) => {
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -45,13 +44,13 @@ const AccordionComp = () => {
     return (
         (
             <div>
-                {uploadTasks.length > 0 ?
+                {tasks?.length > 0 ?
                     <div className={AccordionStyles.container}>
                         <div className={AccordionStyles.accordion}>
                             <div className={AccordionStyles.accordionHeader}>
                                 <div className={AccordionStyles.headerLeft}>
                                     <h2>{ActionType[1]}</h2>
-                                    <span>(4/{uploadTasks ? uploadTasks.length : 0})</span>
+                                    <span>(4/{tasks ? tasks.length : 0})</span>
                                 </div>
 
                                 <div className={AccordionStyles.headerRight}>
@@ -67,7 +66,7 @@ const AccordionComp = () => {
 
                             <div className={AccordionStyles.bodyContainer}>
                                 <ul className={`${isOpen ? AccordionStyles.maxHeight : ''}`}>
-                                    {uploadTasks && [...uploadTasks].map((task, index) => {
+                                    {tasks && [...tasks].map((task, index) => {
                                         return (
                                             <li key={index}>
                                                 <div className={AccordionStyles.fileDetails}>

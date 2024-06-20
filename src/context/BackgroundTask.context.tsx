@@ -3,6 +3,7 @@ import { createContext, useContext, useState, ReactNode } from 'react';
 
 type BackgroundContextType = {
     uploadTasks: UploadTask[],
+    downloadTasks?: DownloadTask
     appendUploadTask: (task: UploadTask) => void,
     appendDownloadTask: (task: DownloadTask) => void
 }

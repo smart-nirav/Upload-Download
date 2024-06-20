@@ -1,8 +1,8 @@
-import React from 'react'
-
 const DownloadComp2 = () => {
     return (
-        <div>DownloadComp</div>
+        <div>
+            <button>Download-2</button>
+        </div>
     )
 }
 
