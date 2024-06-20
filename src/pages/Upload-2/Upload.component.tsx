@@ -12,7 +12,6 @@ const UploadComp2 = () => {
         })
     }
 
-
     return (
         <button className='' >
             Upload-2

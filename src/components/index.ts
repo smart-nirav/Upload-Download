@@ -1,5 +1,6 @@
 import AccordionComp from "./Accordion";
-import DownloadComp from "./Download";
-import UploadComp from "./Upload";
+import BackgroundTaskComp from "./BackgroundTaskComp";
+import BackgroundUploadComp from "./BackgroundUploadComp";
+import BackgrounDownloadComp from "./BackgrounDownloadComp";
 
-export { AccordionComp, DownloadComp, UploadComp };
+export { AccordionComp, BackgroundTaskComp, BackgroundUploadComp, BackgrounDownloadComp };

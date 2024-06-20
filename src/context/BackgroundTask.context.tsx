@@ -7,7 +7,7 @@ type BackgroundContextType = {
     appendDownloadTask: (task: DownloadTask) => void
 }
 
-interface UploadTask {
+export interface UploadTask {
     uploadUrl: string,
     file: File
 }

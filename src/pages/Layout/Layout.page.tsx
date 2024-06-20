@@ -17,7 +17,7 @@ const Layout = () => {
             link: 'upload-1',
         },
         {
-            name: 'upload2',
+            name: 'Upload2',
             link: 'upload-2',
         },
     ]

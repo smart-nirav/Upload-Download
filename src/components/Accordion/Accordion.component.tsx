@@ -4,16 +4,19 @@ import DownArrow from '../../assets/images/downArrow.svg';
 import LoaderIcon from '../../assets/images/loader.svg';
 import StatusFailedIcon from '../../assets/images/re-upload.svg';
 import StatusSuccessIcon from '../../assets/images/success.svg';
-import { useBackgroundTask } from '../../context/BackgroundTask.context';
+import { UploadTask, useBackgroundTask } from '../../context/BackgroundTask.context';
 import { ActionType } from '../../utils/constants/common.constant';
 import { handleFileSizeType, handleFiletype } from '../../utils/helper/common.helper';
 import AccordionStyles from './Accordion.module.scss';
+
+type AccordionType = {
+    taskList: UploadTask;
+}
 
 const AccordionComp = () => {
     const { uploadTasks } = useBackgroundTask();
 
     const [isOpen, setIsOpen] = useState(false);
-
 
     //Open and close accordion
     const handleAccordion = () => {
@@ -42,7 +45,7 @@ const AccordionComp = () => {
     return (
         (
             <div>
-                {uploadTasks ?
+                {uploadTasks.length > 0 ?
                     <div className={AccordionStyles.container}>
                         <div className={AccordionStyles.accordion}>
                             <div className={AccordionStyles.accordionHeader}>
