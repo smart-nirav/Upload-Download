@@ -1,10 +1,14 @@
+import { RouterProvider } from 'react-router-dom'
+import { router } from './routes/route'
+import { BackgroundTaskProvider } from './context/BackgroundTask.context'
 import './App.css'
-import { AccordionComp } from './components'
 
 function App() {
 
   return (
-    <AccordionComp label='Upload' />
+    <BackgroundTaskProvider>
+      <RouterProvider router={router} />
+    </BackgroundTaskProvider>
   )
 }
 
